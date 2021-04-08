@@ -8,9 +8,14 @@
 
 config_version=4
 
-_global_script_classes=[  ]
+_global_script_classes=[ {
+"base": "Reference",
+"class": "WorldTileMapHelper",
+"language": "GDScript",
+"path": "res://src/sceans/world/world_tile_map_helper.gd"
+} ]
 _global_script_class_icons={
-
+"WorldTileMapHelper": ""
 }
 
 [application]
