@@ -10,18 +10,18 @@ config_version=4
 
 _global_script_classes=[ {
 "base": "Reference",
-"class": "WorldTileMapHelper",
+"class": "LabyrinthTileMapHelper",
 "language": "GDScript",
-"path": "res://src/sceans/world/world_tile_map_helper.gd"
+"path": "res://src/sceans/labyrinth/labyrinth_tile_map_helper.gd"
 } ]
 _global_script_class_icons={
-"WorldTileMapHelper": ""
+"LabyrinthTileMapHelper": ""
 }
 
 [application]
 
 config/name="Nowy Projekt Gry"
-run/main_scene="res://src/sceans/world/world.tscn"
+run/main_scene="res://src/sceans/labyrinth/labyrinth.tscn"
 config/icon="res://icon.png"
 
 [input_devices]

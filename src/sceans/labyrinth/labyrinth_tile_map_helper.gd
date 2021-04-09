@@ -1,4 +1,4 @@
-class_name WorldTileMapHelper 
+class_name LabyrinthTileMapHelper
 
 const _map = {
 	0: 0, # empty

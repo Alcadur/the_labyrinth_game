@@ -1,7 +1,6 @@
 extends KinematicBody2D
 
-export var acceleration: float = 100.0
-export var max_speed: float = 250
+export var max_speed: float = 150
 var _dystance: Vector2
 var _destination_point := position
 var _is_moving := false
@@ -24,10 +23,7 @@ func move_if_required(delta: float) -> void:
 		_speed = 0
 		return
 		
-	_speed += acceleration * delta
-	
-	if _speed > max_speed:
-		_speed = max_speed
+	_speed = max_speed
 
 	var distance_to_destination = position.distance_to(_destination_point)
 	_movment = position.direction_to(_destination_point) * _speed
