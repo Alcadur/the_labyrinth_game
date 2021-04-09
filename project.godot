@@ -24,6 +24,10 @@ config/name="Nowy Projekt Gry"
 run/main_scene="res://src/sceans/world/world.tscn"
 config/icon="res://icon.png"
 
+[input_devices]
+
+pointing/emulate_touch_from_mouse=true
+
 [rendering]
 
 environment/default_environment="res://default_env.tres"

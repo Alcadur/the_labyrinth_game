@@ -1,0 +1,387 @@
+[gd_scene load_steps=56 format=2]
+
+[ext_resource path="res://assets/player.png" type="Texture" id=1]
+[ext_resource path="res://src/sceans/player/Player.gd" type="Script" id=2]
+
+[sub_resource type="RectangleShape2D" id=1]
+extents = Vector2( 9.83589, 9.28595 )
+
+[sub_resource type="AtlasTexture" id=2]
+flags = 4
+atlas = ExtResource( 1 )
+region = Rect2( 64, 512, 64, 64 )
+
+[sub_resource type="AtlasTexture" id=3]
+flags = 4
+atlas = ExtResource( 1 )
+region = Rect2( 128, 512, 64, 64 )
+
+[sub_resource type="AtlasTexture" id=4]
+flags = 4
+atlas = ExtResource( 1 )
+region = Rect2( 192, 512, 64, 64 )
+
+[sub_resource type="AtlasTexture" id=5]
+flags = 4
+atlas = ExtResource( 1 )
+region = Rect2( 256, 512, 64, 64 )
+
+[sub_resource type="AtlasTexture" id=6]
+flags = 4
+atlas = ExtResource( 1 )
+region = Rect2( 320, 512, 64, 64 )
+
+[sub_resource type="AtlasTexture" id=7]
+flags = 4
+atlas = ExtResource( 1 )
+region = Rect2( 384, 512, 64, 64 )
+
+[sub_resource type="AtlasTexture" id=8]
+flags = 4
+atlas = ExtResource( 1 )
+region = Rect2( 448, 512, 64, 64 )
+
+[sub_resource type="AtlasTexture" id=9]
+flags = 4
+atlas = ExtResource( 1 )
+region = Rect2( 512, 512, 64, 64 )
+
+[sub_resource type="AtlasTexture" id=10]
+flags = 4
+atlas = ExtResource( 1 )
+region = Rect2( 64, 576, 64, 64 )
+
+[sub_resource type="AtlasTexture" id=11]
+flags = 4
+atlas = ExtResource( 1 )
+region = Rect2( 128, 576, 64, 64 )
+
+[sub_resource type="AtlasTexture" id=12]
+flags = 4
+atlas = ExtResource( 1 )
+region = Rect2( 192, 576, 64, 64 )
+
+[sub_resource type="AtlasTexture" id=13]
+flags = 4
+atlas = ExtResource( 1 )
+region = Rect2( 256, 576, 64, 64 )
+
+[sub_resource type="AtlasTexture" id=14]
+flags = 4
+atlas = ExtResource( 1 )
+region = Rect2( 320, 576, 64, 64 )
+
+[sub_resource type="AtlasTexture" id=15]
+flags = 4
+atlas = ExtResource( 1 )
+region = Rect2( 384, 576, 64, 64 )
+
+[sub_resource type="AtlasTexture" id=16]
+flags = 4
+atlas = ExtResource( 1 )
+region = Rect2( 448, 576, 64, 64 )
+
+[sub_resource type="AtlasTexture" id=17]
+flags = 4
+atlas = ExtResource( 1 )
+region = Rect2( 512, 576, 64, 64 )
+
+[sub_resource type="AtlasTexture" id=18]
+flags = 4
+atlas = ExtResource( 1 )
+region = Rect2( 64, 704, 64, 64 )
+
+[sub_resource type="AtlasTexture" id=19]
+flags = 4
+atlas = ExtResource( 1 )
+region = Rect2( 128, 704, 64, 64 )
+
+[sub_resource type="AtlasTexture" id=20]
+flags = 4
+atlas = ExtResource( 1 )
+region = Rect2( 192, 704, 64, 64 )
+
+[sub_resource type="AtlasTexture" id=21]
+flags = 4
+atlas = ExtResource( 1 )
+region = Rect2( 256, 704, 64, 64 )
+
+[sub_resource type="AtlasTexture" id=22]
+flags = 4
+atlas = ExtResource( 1 )
+region = Rect2( 320, 704, 64, 64 )
+
+[sub_resource type="AtlasTexture" id=23]
+flags = 4
+atlas = ExtResource( 1 )
+region = Rect2( 384, 704, 64, 64 )
+
+[sub_resource type="AtlasTexture" id=24]
+flags = 4
+atlas = ExtResource( 1 )
+region = Rect2( 448, 704, 64, 64 )
+
+[sub_resource type="AtlasTexture" id=25]
+flags = 4
+atlas = ExtResource( 1 )
+region = Rect2( 512, 704, 64, 64 )
+
+[sub_resource type="AtlasTexture" id=26]
+flags = 4
+atlas = ExtResource( 1 )
+region = Rect2( 64, 640, 64, 64 )
+
+[sub_resource type="AtlasTexture" id=27]
+flags = 4
+atlas = ExtResource( 1 )
+region = Rect2( 128, 640, 64, 64 )
+
+[sub_resource type="AtlasTexture" id=28]
+flags = 4
+atlas = ExtResource( 1 )
+region = Rect2( 192, 640, 64, 64 )
+
+[sub_resource type="AtlasTexture" id=29]
+flags = 4
+atlas = ExtResource( 1 )
+region = Rect2( 256, 640, 64, 64 )
+
+[sub_resource type="AtlasTexture" id=30]
+flags = 4
+atlas = ExtResource( 1 )
+region = Rect2( 320, 640, 64, 64 )
+
+[sub_resource type="AtlasTexture" id=31]
+flags = 4
+atlas = ExtResource( 1 )
+region = Rect2( 384, 640, 64, 64 )
+
+[sub_resource type="AtlasTexture" id=32]
+flags = 4
+atlas = ExtResource( 1 )
+region = Rect2( 448, 640, 64, 64 )
+
+[sub_resource type="AtlasTexture" id=33]
+flags = 4
+atlas = ExtResource( 1 )
+region = Rect2( 512, 640, 64, 64 )
+
+[sub_resource type="SpriteFrames" id=34]
+animations = [ {
+"frames": [ SubResource( 2 ), SubResource( 3 ), SubResource( 4 ), SubResource( 5 ), SubResource( 6 ), SubResource( 7 ), SubResource( 8 ), SubResource( 9 ) ],
+"loop": true,
+"name": "walk N",
+"speed": 8.0
+}, {
+"frames": [ SubResource( 10 ), SubResource( 11 ), SubResource( 12 ), SubResource( 13 ), SubResource( 14 ), SubResource( 15 ), SubResource( 16 ), SubResource( 17 ) ],
+"loop": true,
+"name": "walk W",
+"speed": 5.0
+}, {
+"frames": [ SubResource( 18 ), SubResource( 19 ), SubResource( 20 ), SubResource( 21 ), SubResource( 22 ), SubResource( 23 ), SubResource( 24 ), SubResource( 25 ) ],
+"loop": true,
+"name": "walk E",
+"speed": 5.0
+}, {
+"frames": [ SubResource( 26 ), SubResource( 27 ), SubResource( 28 ), SubResource( 29 ), SubResource( 30 ), SubResource( 31 ), SubResource( 32 ), SubResource( 33 ) ],
+"loop": true,
+"name": "walk S",
+"speed": 5.0
+} ]
+
+[sub_resource type="Animation" id=35]
+resource_name = "Idle"
+length = 1.373
+loop = true
+step = 0.4
+tracks/0/type = "value"
+tracks/0/path = NodePath("player/playerSprite:frame")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/keys = {
+"times": PoolRealArray( 0, 0.4, 0.8, 1.2 ),
+"transitions": PoolRealArray( 1, 1, 1, 1 ),
+"update": 1,
+"values": [ 28, 29, 31, 29 ]
+}
+
+[sub_resource type="Animation" id=36]
+resource_name = "Prepare to idle"
+length = 1.39
+loop = true
+step = 0.2
+tracks/0/type = "value"
+tracks/0/path = NodePath("player/playerSprite:frame")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/keys = {
+"times": PoolRealArray( 0, 0.2, 0.4 ),
+"transitions": PoolRealArray( 1, 1, 1 ),
+"update": 1,
+"values": [ 26, 27, 28 ]
+}
+
+[sub_resource type="Animation" id=37]
+resource_name = "Walk E"
+length = 1.468
+loop = true
+step = 0.2
+tracks/0/type = "value"
+tracks/0/path = NodePath("player/playerSprite:frame")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/keys = {
+"times": PoolRealArray( 0, 0.2, 0.4, 0.6, 0.8, 1, 1.2, 1.4 ),
+"transitions": PoolRealArray( 1, 1, 1, 1, 1, 1, 1, 1 ),
+"update": 1,
+"values": [ 144, 145, 146, 147, 148, 149, 150, 151 ]
+}
+
+[sub_resource type="Animation" id=38]
+length = 1.464
+loop = true
+step = 0.2
+tracks/0/type = "value"
+tracks/0/path = NodePath("player/playerSprite:frame")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/keys = {
+"times": PoolRealArray( 0, 0.2, 0.4, 0.6, 0.8, 1, 1.2, 1.4 ),
+"transitions": PoolRealArray( 1, 1, 1, 1, 1, 1, 1, 1 ),
+"update": 1,
+"values": [ 105, 106, 107, 108, 109, 110, 111, 112 ]
+}
+
+[sub_resource type="Animation" id=39]
+length = 1.468
+loop = true
+step = 0.2
+tracks/0/type = "value"
+tracks/0/path = NodePath("player/playerSprite:frame")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/keys = {
+"times": PoolRealArray( 0, 0.2, 0.4, 0.6, 0.8, 1, 1.2, 1.4 ),
+"transitions": PoolRealArray( 1, 1, 1, 1, 1, 1, 1, 1 ),
+"update": 1,
+"values": [ 131, 132, 133, 134, 135, 136, 137, 138 ]
+}
+
+[sub_resource type="Animation" id=40]
+length = 1.468
+loop = true
+step = 0.2
+tracks/0/type = "value"
+tracks/0/path = NodePath("player/playerSprite:frame")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/keys = {
+"times": PoolRealArray( 0, 0.2, 0.4, 0.6, 0.8, 1, 1.2, 1.4 ),
+"transitions": PoolRealArray( 1, 1, 1, 1, 1, 1, 1, 1 ),
+"update": 1,
+"values": [ 120, 119, 120, 121, 122, 123, 124, 125 ]
+}
+
+[sub_resource type="AnimationNodeAnimation" id=41]
+animation = "Idle"
+
+[sub_resource type="AnimationNodeAnimation" id=42]
+animation = "Idle"
+
+[sub_resource type="AnimationNodeAnimation" id=43]
+animation = "Walk S"
+
+[sub_resource type="AnimationNodeAnimation" id=44]
+animation = "Walk W"
+
+[sub_resource type="AnimationNodeAnimation" id=45]
+animation = "Walk E"
+
+[sub_resource type="AnimationNodeAnimation" id=46]
+animation = "Walk N"
+
+[sub_resource type="AnimationNodeBlendSpace2D" id=47]
+blend_point_0/node = SubResource( 43 )
+blend_point_0/pos = Vector2( 0, 1 )
+blend_point_1/node = SubResource( 44 )
+blend_point_1/pos = Vector2( -1, 0 )
+blend_point_2/node = SubResource( 45 )
+blend_point_2/pos = Vector2( 1, 0 )
+blend_point_3/node = SubResource( 46 )
+blend_point_3/pos = Vector2( 0, -1 )
+blend_mode = 1
+
+[sub_resource type="AnimationNodeStateMachineTransition" id=48]
+switch_mode = 2
+auto_advance = true
+
+[sub_resource type="AnimationNodeStateMachineTransition" id=49]
+switch_mode = 1
+
+[sub_resource type="AnimationNodeStateMachineTransition" id=50]
+switch_mode = 1
+
+[sub_resource type="AnimationNodeStateMachineTransition" id=51]
+switch_mode = 1
+
+[sub_resource type="AnimationNodeStateMachine" id=52]
+states/Idle/node = SubResource( 41 )
+states/Idle/position = Vector2( 582, 86 )
+"states/Prepare to idle/node" = SubResource( 42 )
+"states/Prepare to idle/position" = Vector2( 346, 174 )
+states/Walk/node = SubResource( 47 )
+states/Walk/position = Vector2( 292, 62 )
+transitions = [ "Prepare to idle", "Idle", SubResource( 48 ), "Prepare to idle", "Walk", SubResource( 49 ), "Walk", "Prepare to idle", SubResource( 50 ), "Idle", "Walk", SubResource( 51 ) ]
+start_node = "Prepare to idle"
+
+[sub_resource type="AnimationNodeStateMachinePlayback" id=53]
+
+[node name="Player" type="KinematicBody2D"]
+script = ExtResource( 2 )
+
+[node name="player" type="CollisionShape2D" parent="."]
+position = Vector2( 0, 2.5 )
+shape = SubResource( 1 )
+
+[node name="playerSprite" type="Sprite" parent="player"]
+position = Vector2( 0.245147, -15.7326 )
+scale = Vector2( 0.602702, 0.602702 )
+texture = ExtResource( 1 )
+vframes = 21
+hframes = 13
+frame = 28
+
+[node name="AnimatedSprite" type="AnimatedSprite" parent="."]
+visible = false
+position = Vector2( 0, -0.707108 )
+frames = SubResource( 34 )
+animation = "walk N"
+frame = 5
+playing = true
+
+[node name="AnimationPlayer" type="AnimationPlayer" parent="."]
+anims/Idle = SubResource( 35 )
+"anims/Prepare to idle" = SubResource( 36 )
+"anims/Walk E" = SubResource( 37 )
+"anims/Walk N" = SubResource( 38 )
+"anims/Walk S" = SubResource( 39 )
+"anims/Walk W" = SubResource( 40 )
+
+[node name="AnimationTree" type="AnimationTree" parent="."]
+tree_root = SubResource( 52 )
+anim_player = NodePath("../AnimationPlayer")
+active = true
+parameters/playback = SubResource( 53 )
+parameters/Walk/blend_position = Vector2( -0.00154561, -0.00862074 )
