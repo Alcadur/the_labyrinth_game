@@ -15,7 +15,7 @@ func _physics_process(delta: float) -> void:
 
 func _unhandled_input(event) -> void:
 	if event is InputEventScreenTouch and event.pressed:
-		_destination_point = get_global_mouse_position()
+		_destination_point = event.position
 		_is_moving = true
 
 func move_if_required(delta: float) -> void:

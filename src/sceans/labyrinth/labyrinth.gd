@@ -1,6 +1,7 @@
 extends Node2D
 
 onready var tiles := $TileMap
+onready var nav := $Navigation2D
 var dirs = {
 	"N": 0x1,
 	"E": 0x2,
@@ -8,9 +9,13 @@ var dirs = {
 	"W": 0x8
 }
 
+#func _unhandled_input(event) -> void:
+#	if event is InputEventScreenTouch and event.pressed:
+#		print('nav', nav.get_simple_path(Vector2.ZERO, event.position))
+
 # Called when the node enters the scene tree for the first time.
 func _ready():
-	var map = $LabyrinthTileMap
+	var map = $Navigation2D/LabyrinthTileMap
 	#var c = $TileMap.get_cellv(Vector2(0,0))
 	#$TileMap.set_cellv(Vector2(0,0), -1)
 	print( [dirs.E, dirs.N,  dirs.E|dirs.N])

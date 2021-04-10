@@ -1,7 +1,6 @@
-[gd_scene load_steps=52 format=2]
+[gd_scene load_steps=51 format=2]
 
 [ext_resource path="res://src/sceans/labyrinth/labyrinth.gd" type="Script" id=1]
-[ext_resource path="res://src/sceans/player/Player.tscn" type="PackedScene" id=2]
 [ext_resource path="res://assets/tiles/10.png" type="Texture" id=3]
 [ext_resource path="res://assets/tiles/1.png" type="Texture" id=4]
 [ext_resource path="res://assets/tiles/12.png" type="Texture" id=5]
@@ -549,11 +548,10 @@ points = PoolVector2Array( 44, 44, 38, 44, 38, 0, 44, 0 )
 [node name="Labyrinth" type="Node2D"]
 script = ExtResource( 1 )
 
-[node name="LabyrinthTileMap" type="TileMap" parent="."]
+[node name="Navigation2D" type="Navigation2D" parent="."]
+
+[node name="LabyrinthTileMap" type="TileMap" parent="Navigation2D"]
 tile_set = SubResource( 33 )
 cell_size = Vector2( 44, 44 )
 cell_custom_transform = Transform2D( 0, 0, 0, 0, 0, 0 )
 format = 1
-
-[node name="Player" parent="." instance=ExtResource( 2 )]
-position = Vector2( 431.954, 356.306 )
