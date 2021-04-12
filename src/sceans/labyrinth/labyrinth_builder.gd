@@ -20,6 +20,8 @@ func build() -> void:
 	pass
 
 func prepare() -> LabyrinthBuilder: 
+	_available = []
+	_visited = {}
 	_fill_map()
 	_mark_rendom_cell_as_available()
 	return self
@@ -35,8 +37,8 @@ func _mark_rendom_cell_as_available() -> void:
 	_random.randomize()
 	var x = _random.randi_range(0 + _offset.x, _size.x + _offset.x - 1)
 	var y = _random.randi_range(0 + _offset.y, _size.y + _offset.y - 1)
-	#var position = Vector2(x, y)
-	var position = Vector2(2, 2)
+	var position = Vector2(x, y)
+	#var position = Vector2(3, 3)
 	_available.append(position)
 	_add_to_visited(position)
 	
@@ -45,23 +47,29 @@ func _add_to_visited(position: Vector2) -> void:
 		_visited[position.x] = {}
 	_visited[position.x][position.y] = true
 	
+func has_steps() -> bool:
+	return _available.size() > 0
+
 func step() -> void:
-	if _available.size() == 0:
+	print(['asd', _available.size(), has_steps()])
+	if !has_steps():
 		return
 	
 	var current_cell = _get_available_cell()
 	var next_cell = _get_next_cell_position(current_cell)
 	
-	print(['ccnc', current_cell, next_cell])
-	_add_to_visited(next_cell)
-	_available.append(next_cell)
-	
-	if next_cell == Vector2.ZERO:
+	if next_cell == Vector2.INF:
+		_remove_unnecessary_cells_from_availables(current_cell)
 		return
-	_remove_walls(current_cell, next_cell)
-	if _get_unvisited_neighbors(current_cell).size() == 0:
-		_available.remove(_available.find(current_cell))
 	
+	_add_to_visited(next_cell)
+	_remove_walls(current_cell, next_cell)
+	
+	if _get_unvisited_neighbors(next_cell).size() > 0:
+		_available.append(next_cell)
+		
+	_remove_unnecessary_cells_from_availables(current_cell)	
+		
 func _get_available_cell() -> Vector2:
 	_random.randomize()
 	var cell_index = _random.randi_range(0, _available.size() - 1)
@@ -72,7 +80,7 @@ func _get_next_cell_position(current_cell: Vector2) -> Vector2:
 	
 	var neighbors = _get_unvisited_neighbors(current_cell)
 	if neighbors.size() == 0: 
-		return Vector2.ZERO
+		return Vector2.INF
 		
 	var neighbor_index = _random.randi_range(0, neighbors.size() - 1)
 	return neighbors[neighbor_index]
@@ -81,7 +89,7 @@ func _get_unvisited_neighbors(position: Vector2) -> PoolVector2Array:
 	var neighbor_N = Vector2(position.x, position.y + 1)
 	var neighbor_E = Vector2(position.x + 1, position.y)
 	var neighbor_S = Vector2(position.x, position.y - 1)
-	var neighbor_W = Vector2(position.x - 1, position.y + 1)
+	var neighbor_W = Vector2(position.x - 1, position.y)
 	var all_neighbors := PoolVector2Array([neighbor_N, neighbor_E, neighbor_S, neighbor_W])
 	return _remove_visited_and_incorect_neighbors(all_neighbors)
 
@@ -111,3 +119,20 @@ func _remove_walls(current_cell: Vector2, next_cell: Vector2) -> void:
 func _remove_wall(positoin: Vector2, direction) -> void: 
 	var cell_value = LabyrinthTileMapHelper.get_cell_value(_map, positoin)
 	LabyrinthTileMapHelper.set_cell_value(_map, positoin, cell_value - direction)
+
+func _remove_unnecessary_cells_from_availables(position: Vector2) -> void: 
+	var cells = [
+		position,
+		Vector2(position.x + 1, position.y),
+		Vector2(position.x - 1, position.y),
+		Vector2(position.x, position.y + 1),
+		Vector2(position.x, position.y - 1),
+	]
+	
+	
+	for cell in cells:
+		if _get_unvisited_neighbors(cell).size() == 0:
+			_remove_from_available(cell)
+			
+func _remove_from_available(positoin: Vector2) -> void:
+	_available.remove(_available.find(positoin))
