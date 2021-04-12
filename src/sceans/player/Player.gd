@@ -1,36 +1,43 @@
 extends KinematicBody2D
 
-export var max_speed: float = 150
+export var speed: float = 150
+var _delta_speed: float = 0
 var _dystance: Vector2
 var _destination_point := position
 var _is_moving := false
-var _speed := 0.0
-var _movment: Vector2
+var _moving: Vector2
 
 func _process(delta) -> void:
+	_delta_speed = delta * speed
+	move_if_required()
 	pass
 	
 func _physics_process(delta: float) -> void:
-	move_if_required(delta)
+	
+	pass
 
 func _unhandled_input(event) -> void:
 	if event is InputEventScreenTouch and event.pressed:
-		_destination_point = event.position
-		_is_moving = true
+		_start_move(event.position)
 
-func move_if_required(delta: float) -> void:
+func move_if_required() -> void:
 	if _is_moving == false: 
-		_speed = 0
 		return
-		
-	_speed = max_speed
+	var distance = position.distance_to(_destination_point)
+	_moving = position.direction_to(_destination_point) * _delta_speed
 
-	var distance_to_destination = position.distance_to(_destination_point)
-	_movment = position.direction_to(_destination_point) * _speed
-	
-	if distance_to_destination > 5:
-		_movment = move_and_slide(_movment)
+	if distance > 2:
+		var colisionObj = move_and_collide(_moving)
+		
+		if colisionObj != null:
+			_stop_move()
 		return
-	
+
 	position = _destination_point
+
+func _start_move(destination: Vector2) -> void:
+	_destination_point = destination
+	_is_moving = true
+
+func _stop_move() -> void:
 	_is_moving = false

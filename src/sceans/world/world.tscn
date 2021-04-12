@@ -13,3 +13,8 @@ script = ExtResource( 17 )
 position = Vector2( 460.145, 435.138 )
 
 [node name="Navigation2D2" type="Navigation2D" parent="."]
+
+[node name="Camera2D" type="Camera2D" parent="."]
+position = Vector2( 512, 301 )
+current = true
+zoom = Vector2( 2, 2 )
