@@ -24,3 +24,29 @@ static func get_tile_id(field_value: int) -> int:
 
 static func set_cell_value(map: TileMap, position: Vector2, value) -> void:
 	map.set_cellv(position, get_tile_id(value))
+
+static func get_random_direction() -> int:
+	var dirs = [DirectionEnum.N, DirectionEnum.E, DirectionEnum.S, DirectionEnum.W]
+	randomize()
+	dirs.shuffle()
+	return dirs[0]
+
+static func get_cell_value(map: TileMap, position: Vector2) -> int:
+	var value = map.get_cellv(position)
+	for key in _map.keys():
+		if _map[key] == value:
+			return key
+	return -1
+
+static func change_n(map: TileMap, position: Vector2, direction: int) -> void:
+	var dirV = Vector2.ZERO
+	
+	match direction:
+		DirectionEnum.N: dirV = Vector2(0, -1) 
+		DirectionEnum.E: dirV = Vector2(1, 0) 
+		DirectionEnum.S: dirV = Vector2(0, 1) 
+		DirectionEnum.W: dirV = Vector2(-1, 0)
+	
+	var n_position: Vector2 = position + dirV 
+	print(['np', direction, DirectionEnum.oposit(direction), dirV, n_position])
+	set_cell_value(map, n_position, map.get_cellv(n_position) - DirectionEnum.oposit(direction))
