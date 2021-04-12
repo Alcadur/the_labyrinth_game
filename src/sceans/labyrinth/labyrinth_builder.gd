@@ -1,15 +1,22 @@
 class_name LabyrinthBuilder
 
 var _map: TileMap
+var _number_of_cells := 0
 var _size: Vector2
 var _offset := Vector2.ZERO
 var _available := []
 var _visited = {}
+var _number_of_visited_cells := 0
 var _random := RandomNumberGenerator.new()
+var progress setget , _count_progress
 
 func _init(map: TileMap, size: Vector2):
 	_map = map
 	_size = size
+	_number_of_cells = size.x * size.y
+
+func _count_progress() -> float:
+	return float(_number_of_visited_cells) / float(_number_of_cells)
 
 func set_offset(offset: Vector2) -> LabyrinthBuilder:
 	_offset = offset
@@ -17,21 +24,14 @@ func set_offset(offset: Vector2) -> LabyrinthBuilder:
 
 func build() -> void:
 	prepare()
-	pass
+	while has_steps():
+		step()
 
 func prepare() -> LabyrinthBuilder: 
 	_available = []
 	_visited = {}
-	_fill_map()
 	_mark_rendom_cell_as_available()
 	return self
-	
-func _fill_map() -> void:
-	var max_value = DirectionEnum.N | DirectionEnum.E | DirectionEnum.S | DirectionEnum.W 
-	for x in range(_size.x):
-		for y in range(_size.y):
-			var position = Vector2(x + _offset.x, y + _offset.y)
-			LabyrinthTileMapHelper.set_cell_value(_map, position, max_value)
 			
 func _mark_rendom_cell_as_available() -> void: 
 	_random.randomize()
@@ -46,12 +46,12 @@ func _add_to_visited(position: Vector2) -> void:
 	if 	!_visited.has(position.x):
 		_visited[position.x] = {}
 	_visited[position.x][position.y] = true
+	_number_of_visited_cells += 1
 	
 func has_steps() -> bool:
 	return _available.size() > 0
 
 func step() -> void:
-	print(['asd', _available.size(), has_steps()])
 	if !has_steps():
 		return
 	
@@ -117,7 +117,7 @@ func _remove_walls(current_cell: Vector2, next_cell: Vector2) -> void:
 	_remove_wall(next_cell, DirectionEnum.oposit(direction))
 
 func _remove_wall(positoin: Vector2, direction) -> void: 
-	var cell_value = LabyrinthTileMapHelper.get_cell_value(_map, positoin)
+	var cell_value = LabyrinthTileMapHelper.get_cell_value_or_max(_map, positoin)
 	LabyrinthTileMapHelper.set_cell_value(_map, positoin, cell_value - direction)
 
 func _remove_unnecessary_cells_from_availables(position: Vector2) -> void: 
@@ -128,7 +128,6 @@ func _remove_unnecessary_cells_from_availables(position: Vector2) -> void:
 		Vector2(position.x, position.y + 1),
 		Vector2(position.x, position.y - 1),
 	]
-	
 	
 	for cell in cells:
 		if _get_unvisited_neighbors(cell).size() == 0:

@@ -37,6 +37,13 @@ static func get_cell_value(map: TileMap, position: Vector2) -> int:
 		if _map[key] == value:
 			return key
 	return -1
+	
+static func get_cell_value_or_max(map: TileMap, positoin: Vector2) -> int:
+	var value = get_cell_value(map, positoin)
+	if value == -1: 
+		return DirectionEnum.N + DirectionEnum.E + DirectionEnum.S + DirectionEnum.W
+	return value
+	
 
 static func change_n(map: TileMap, position: Vector2, direction: int) -> void:
 	var dirV = Vector2.ZERO
