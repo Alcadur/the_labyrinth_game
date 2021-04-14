@@ -3,12 +3,16 @@ class_name LabyrinthBuilder
 var _map: TileMap
 var _number_of_cells := 0
 var _size: Vector2
+var _last_x_index: int
+var _last_y_index: int
 var _offset := Vector2.ZERO
 var _available := []
 var _visited = {}
 var _number_of_visited_cells := 0
 var _random := RandomNumberGenerator.new()
 var progress setget , _count_progress
+var _entry: Vector2
+var _exit: Vector2
 
 func _init(map: TileMap, size: Vector2):
 	_map = map
@@ -28,6 +32,8 @@ func build() -> void:
 		step()
 
 func prepare() -> LabyrinthBuilder: 
+	_last_x_index = _size.x + _offset.x - 1
+	_last_y_index = _size.y + _offset.y - 1
 	_available = []
 	_visited = {}
 	_mark_rendom_cell_as_available()
@@ -135,3 +141,31 @@ func _remove_unnecessary_cells_from_availables(position: Vector2) -> void:
 			
 func _remove_from_available(positoin: Vector2) -> void:
 	_available.remove(_available.find(positoin))
+	
+func set_entry(directoin: int, cell_index: int = -1) -> Vector2:
+	_random.randomize()
+	var positions := PoolVector2Array([])
+	var x_range := range(_offset.x, _last_x_index)
+	var y_range := range(_offset.y, _last_y_index)
+	
+	match directoin:
+		DirectionEnum.N: 
+			for x in x_range:
+				positions.append(Vector2(x, _offset.y))
+		DirectionEnum.E: 
+			for y in y_range:
+				positions.append(Vector2(_last_x_index, y))
+		DirectionEnum.S: 
+			for x in x_range:
+				positions.append(Vector2(x, _last_y_index))
+		DirectionEnum.W:
+			for y in y_range:
+				positions.append(Vector2(_offset.x, y))
+	
+	if cell_index == -1:
+		cell_index = _random.randi_range(0, positions.size() - 1)
+
+	_entry = positions[cell_index]
+	_remove_wall(_entry, directoin)
+	
+	return _entry
