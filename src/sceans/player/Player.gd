@@ -52,10 +52,8 @@ func move_by_path(path: PoolVector2Array) -> void:
 	set_process(true)
 
 func move() -> void:
-	print('m1')
 	if !_is_moving or !_path or _path.size() == 0:
 		return
-	print('m2')	
 	var destination := _path[0]
 	var distance = position.distance_to(destination)
 	_moving = position.direction_to(destination) * _delta_speed
