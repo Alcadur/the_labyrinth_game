@@ -36,6 +36,10 @@ config/name="The labyrinth game"
 run/main_scene="res://src/sceans/world/world.tscn"
 config/icon="res://icon.png"
 
+[autoload]
+
+Events="*res://src/shared/Events.gd"
+
 [input_devices]
 
 pointing/emulate_touch_from_mouse=true
