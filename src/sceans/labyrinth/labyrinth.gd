@@ -23,6 +23,7 @@ func find_path(from: Vector2, to: Vector2) -> PoolVector2Array:
 	var simple_path = nav.get_simple_path(from, _convert_to_tile_center(to), false)
 	var path = PoolVector2Array([])
 	var simple_path_max_index = simple_path.size() - 1
+	
 	for step_index in range(simple_path_max_index + 1):
 		var current_step = simple_path[step_index]
 		path.append(_convert_to_tile_center(current_step))
@@ -32,64 +33,31 @@ func find_path(from: Vector2, to: Vector2) -> PoolVector2Array:
 			var middle_step = _find_middle_point_if_needed(current_step, next_step)
 			if middle_step != null: path.append(_convert_to_tile_center(middle_step))
 			
-	var map_path = []
-	for p in path:
-		map_path.append(tiles.world_to_map(p))
-	print(['mpa_path', map_path])	
-	print(['find_path', path])
 	return path
 
 func _find_middle_point_if_needed(start: Vector2, end: Vector2):
 	var start_map_position = tiles.world_to_map(start) 
 	var end_map_position = tiles.world_to_map(end) 
 	var diff: Vector2 = start_map_position - end_map_position
-	#print(['diff', start_map_position, end_map_position, diff])
+	
 	if diff.x != 0 and diff.y != 0:
-		return _find_middle_point(start_map_position, end_map_position, diff)
+		return _find_middle_point(start_map_position, end_map_position)
 		
 	return null
 	
-func _find_middle_point(start: Vector2, end: Vector2, diff: Vector2) -> Vector2:
-	var start_value = LabyrinthTileMapHelper.get_cell_value(tiles, start)
-	var end_value = LabyrinthTileMapHelper.get_cell_value(tiles, end)
+func _find_middle_point(start: Vector2, end: Vector2) -> Vector2:
 	var middle_point = Vector2(start.x, start.y)
-	print(['positoins', start, end])
-	print(['diff', diff])
-	print(['values', start_value, end_value])
-	print('directions', start.direction_to(end))
 	var direction_vector: Vector2 = start.direction_to(end)
 	
 	if direction_vector.x < 0 and direction_vector.y > 0:	
-		print('1')
 		middle_point.x = start.x  - 1
-		middle_point.y = start.y 
 		
-	if direction_vector.x > 0 and direction_vector.y < 0:
-		print('2')
-		middle_point.x = start.x
+	if direction_vector.y < 0:
 		middle_point.y = start.y - 1
-	
-	if direction_vector.x < 0 and direction_vector.y < 0:
-		print(['3', start_value & DirectionEnum.N, end_value & DirectionEnum.E])
-#		if ((start_value & DirectionEnum.N) == 0) and ((end_value & DirectionEnum.E) == 0):
-		middle_point.x = start.x
-		middle_point.y = start.y - 1
-#		else:
-#			middle_point.x = start.x - 1
-#			middle_point.y = start.y
 		
 	if direction_vector.x > 0 and direction_vector.y > 0:
-		print(['4 ', start_value & DirectionEnum.E])
-#		if (start_value & DirectionEnum.E) == 0 and (end_value & DirectionEnum.N) == 0:
 		middle_point.x = start.x + 1
-		middle_point.y = start.y
-#		else:
-#			middle_point.x = start.x
-#			middle_point.y = start.y + 1
-	
-	#if diff.x < 0 and diff.y < 0:
-	#	print(['fmp', start_value & DirectionEnum.N])
-	print(['middle', middle_point])
+#		
 	return tiles.map_to_world(middle_point) 
 		
 	

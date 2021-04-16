@@ -5,10 +5,8 @@ onready var labyrinth := $Labyrinth
 
 func _unhandled_input(event) -> void:
 	if event is InputEventScreenTouch and event.pressed:
-		print(['click possition', player.global_position, event.position])
 		var path = labyrinth.find_path(player.global_position, event.position)
 		player.move_by_path(path)
-		print(['path', path])
 
 func _ready() -> void:
 	labyrinth.connect("finished", self, "_on_Labyrinth_finish")
