@@ -13,11 +13,11 @@ func _ready() -> void:
 
 func _process(delta) -> void:
 	_delta_speed = delta * speed
-	
+	#print(['prossess', _path.size()])
+	move()
 	if _path.size() == 0:
 		set_process(false)
 		return
-	move()
 	pass
 	
 func _physics_process(delta: float) -> void:
@@ -37,6 +37,7 @@ func move_by_path(path: PoolVector2Array) -> void:
 	set_process(true)
 
 func move() -> void:
+	#print(['ps', _path.size()])
 	if !_path or _path.size() == 0:
 		return
 	var destination := _path[0]
@@ -46,10 +47,10 @@ func move() -> void:
 	if distance > 2:
 		var colisionObj = move_and_collide(_moving)
 		
-		if colisionObj != null:
-			_stop_move()
+		#if colisionObj != null:
+		#	_stop_move()
 		return
 
-	_stop_move()
+	#_stop_move()
 	position = destination
 	_path.remove(0)

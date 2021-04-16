@@ -43,17 +43,3 @@ static func get_cell_value_or_max(map: TileMap, positoin: Vector2) -> int:
 	if value == -1: 
 		return DirectionEnum.N + DirectionEnum.E + DirectionEnum.S + DirectionEnum.W
 	return value
-	
-
-static func change_n(map: TileMap, position: Vector2, direction: int) -> void:
-	var dirV = Vector2.ZERO
-	
-	match direction:
-		DirectionEnum.N: dirV = Vector2(0, -1) 
-		DirectionEnum.E: dirV = Vector2(1, 0) 
-		DirectionEnum.S: dirV = Vector2(0, 1) 
-		DirectionEnum.W: dirV = Vector2(-1, 0)
-	
-	var n_position: Vector2 = position + dirV 
-	print(['np', direction, DirectionEnum.oposit(direction), dirV, n_position])
-	set_cell_value(map, n_position, map.get_cellv(n_position) - DirectionEnum.oposit(direction))
