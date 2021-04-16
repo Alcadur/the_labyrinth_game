@@ -23,21 +23,6 @@ func _process(delta) -> void:
 func _physics_process(delta: float) -> void:
 	pass
 
-func move_if_required() -> void:
-	if _is_moving == false: 
-		return
-	var distance = position.distance_to(_destination_point)
-	_moving = position.direction_to(_destination_point) * _delta_speed
-
-	if distance > 2:
-		var colisionObj = move_and_collide(_moving)
-		
-		#if colisionObj != null:
-			#_stop_move()
-		return
-
-	position = _destination_point
-
 func _start_move(destination: Vector2) -> void:
 	_destination_point = destination
 	_is_moving = true
@@ -52,7 +37,7 @@ func move_by_path(path: PoolVector2Array) -> void:
 	set_process(true)
 
 func move() -> void:
-	if !_is_moving or !_path or _path.size() == 0:
+	if !_path or _path.size() == 0:
 		return
 	var destination := _path[0]
 	var distance = position.distance_to(destination)

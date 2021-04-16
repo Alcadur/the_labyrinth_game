@@ -1,7 +1,7 @@
 class_name LabyrinthTileMapHelper
 
 const _map = {
-	0: 0, # empty
+	0: 18, # empty
 	1: 1, # N
 	2: 2, # E
 	3: 5, # N + E
