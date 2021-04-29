@@ -1,4 +1,4 @@
-extends KinematicBody2D
+class_name Player extends KinematicBody2D
 
 export var speed: float = 150
 var _delta_speed: float = 0

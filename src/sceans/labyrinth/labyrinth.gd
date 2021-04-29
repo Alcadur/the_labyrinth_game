@@ -1,11 +1,23 @@
-extends Node2D
+class_name Labyrinth extends Node2D
 
 signal finished(cell_position)
 onready var tiles: TileMap = $Navigation/TileMap
 onready var nav: Navigation2D = $Navigation
-onready var builder = LabyrinthBuilder.new(tiles, Vector2(10, 10))
-onready var _half_cell_size: Vector2 = tiles.cell_size / 2
+onready var builder = LabyrinthBuilder.new(tiles, Vector2(5, 5))
+onready var half_cell_size: Vector2 = tiles.cell_size / 2
 var entry_cell_positoin: Vector2
+var camera: Camera2D
+
+func _unhandled_input(event) -> void:
+	if event is InputEventScreenTouch and event.pressed:
+#		print(['dp', event.position, camera.offset, camera.zoom, event.position / camera.zoom ])
+		LabyrinthTileMapHelper.set_cell_value(tiles, get_map_position(event.position), 15)
+#		print(['pressed', tiles.map_to_world(Vector2.ZERO), event.position])
+#	if event is InputEventScreenDrag:
+#
+#		var map_position = get_map_position(event.position)
+#		LabyrinthTileMapHelper.set_cell_value(tiles, map_position, 0)
+#		print(['lp', map_position, event.position])
 
 func _process(delta):
 	if builder.has_steps():
@@ -15,7 +27,7 @@ func _process(delta):
 	if builder.progress == 1:
 		set_process(false)
 		var entry_map_position = builder.set_entry(DirectionEnum.S)
-		var entry_center_world_position = tiles.map_to_world(entry_map_position) + _half_cell_size
+		var entry_center_world_position = tiles.map_to_world(entry_map_position) + half_cell_size
 		
 		emit_signal('finished', entry_center_world_position)
 
@@ -62,10 +74,14 @@ func _find_middle_point(start: Vector2, end: Vector2) -> Vector2:
 		
 	
 func _convert_to_tile_center(tile_world_position: Vector2) -> Vector2:
-	return tiles.map_to_world(tiles.world_to_map(tile_world_position)) + _half_cell_size
+	return tiles.map_to_world(tiles.world_to_map(tile_world_position)) + half_cell_size
 	
 func _ready():
 	set_process(false)
+	
+	LabyrinthTileMapHelper.set_cell_value(tiles, Vector2(0, 0), 0)
+#	LabyrinthTileMapHelper.set_cell_value(tiles, Vector2(2, 2), 0)
+#	LabyrinthTileMapHelper.set_cell_value(tiles, Vector2(4, 4), 15)
 	pass
 
 func manual_build(cells_values: PoolVector3Array) -> void:
@@ -77,4 +93,7 @@ func generate() -> void:
 	set_process(true)
 
 func get_world_position(map_positoin: Vector2) -> Vector2:
-	return tiles.map_to_world(map_positoin) + _half_cell_size
+	return tiles.map_to_world(map_positoin) + half_cell_size
+
+func get_map_position(world_position: Vector2) -> Vector2:
+	return tiles.world_to_map(world_position)

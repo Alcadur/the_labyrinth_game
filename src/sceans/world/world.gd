@@ -2,15 +2,12 @@ extends Node2D
 
 onready var player := $Player
 onready var labyrinth := $Labyrinth
-
-func _unhandled_input(event) -> void:
-	if event is InputEventScreenTouch and event.pressed:
-		var path = labyrinth.find_path(player.global_position, event.position)
-		player.move_by_path(path)
+onready var path_visualization := $PathVisualiation
 
 func _ready() -> void:
 	labyrinth.connect("finished", self, "_on_Labyrinth_finish")
-	labyrinth.generate()
+#	labyrinth.generate()
+	labyrinth.camera = $Camera2D
 #	labyrinth.manual_build([
 #		Vector3(2, 2, 15 - 4),
 #		Vector3(3, 2, 15 - 4),
@@ -37,3 +34,4 @@ func _ready() -> void:
 
 func _on_Labyrinth_finish(cell_position) -> void:
 	player.position = cell_position
+	

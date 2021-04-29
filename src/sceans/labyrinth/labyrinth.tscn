@@ -544,3 +544,6 @@ tile_set = SubResource( 34 )
 cell_size = Vector2( 44, 44 )
 cell_custom_transform = Transform2D( 0, 0, 0, 0, 0, 0 )
 format = 1
+
+[node name="Line2D" type="Line2D" parent="Navigation"]
+width = 3.0
