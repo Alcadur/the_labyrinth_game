@@ -15,6 +15,7 @@ func _unhandled_input(event):
 	
 	if event is InputEventScreenTouch and !event.pressed:
 		_can_move = false
+		Events.emit_signal('move_player_by_path', _path)
 		clear_points()
 		_path.clear()
 	

@@ -9,6 +9,7 @@ var _moving: Vector2
 var _path: PoolVector2Array = PoolVector2Array([])
 
 func _ready() -> void:
+	Events.connect('move_player_by_path', self, '_on_move_player_by_path')
 	set_process(false)
 
 func _process(delta) -> void:
@@ -18,6 +19,12 @@ func _process(delta) -> void:
 	if _path.size() == 0:
 		set_process(false)
 		return
+	pass
+	
+func _on_move_player_by_path(path: PoolVector2Array) -> void:
+	print(['path', path])
+	_path = path
+	set_process(true)
 	pass
 	
 func _physics_process(delta: float) -> void:
