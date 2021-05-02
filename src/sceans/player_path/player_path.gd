@@ -1,9 +1,18 @@
 class_name PlayerPath extends Line2D
 
+onready var dot := $dot
 var _labyrinth: Labyrinth
 var _player: Player
 var _can_move := false
 var _path: Array = []
+
+func _ready():
+	dot.self_modulate = default_color
+	var scale_value = (width + 6) / dot.texture.get_width()
+	dot.scale = Vector2(scale_value, scale_value)
+
+func _process(delta):
+	dot.visible = true if _path.size() > 0 else false
 
 func setup(labyrinth: Labyrinth, player: Player) -> void:
 	_labyrinth = labyrinth
@@ -24,6 +33,7 @@ func _unhandled_input(event):
 		_remove_points_to_doubeld_position(cell_center)
 		if _path.size() == 0 or _labyrinth.has_passage(_path[-1], cell_center):
 			_path.append(cell_center)
+			dot.position = cell_center
 
 	points = PoolVector2Array(_path)
 	
@@ -44,6 +54,3 @@ func _remove_points_to_doubeld_position(position: Vector2) -> void:
 	if _path.has(position):
 		_path.pop_back()
 		_remove_points_to_doubeld_position(position)
-
-func _ready():
-	pass 
