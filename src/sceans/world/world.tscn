@@ -1,6 +1,7 @@
-[gd_scene load_steps=4 format=2]
+[gd_scene load_steps=5 format=2]
 
 [ext_resource path="res://src/sceans/labyrinth/labyrinth.tscn" type="PackedScene" id=1]
+[ext_resource path="res://src/sceans/player_path/player_path.tscn" type="PackedScene" id=2]
 [ext_resource path="res://src/sceans/world/world.gd" type="Script" id=17]
 [ext_resource path="res://src/sceans/player/Player.tscn" type="PackedScene" id=18]
 
@@ -15,3 +16,5 @@ position = Vector2( 460.145, 435.138 )
 [node name="Camera2D" type="Camera2D" parent="."]
 position = Vector2( 512, 301 )
 current = true
+
+[node name="PlayerPath" parent="." instance=ExtResource( 2 )]

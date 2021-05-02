@@ -44,7 +44,6 @@ func _mark_rendom_cell_as_available() -> void:
 	var x = _random.randi_range(0 + _offset.x, _size.x + _offset.x - 1)
 	var y = _random.randi_range(0 + _offset.y, _size.y + _offset.y - 1)
 	var position = Vector2(x, y)
-	#var position = Vector2(3, 3)
 	_available.append(position)
 	_add_to_visited(position)
 	

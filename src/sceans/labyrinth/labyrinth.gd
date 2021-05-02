@@ -1,4 +1,4 @@
-extends Node2D
+class_name Labyrinth extends Node2D
 
 signal finished(cell_position)
 onready var tiles: TileMap = $Navigation/TileMap
@@ -78,3 +78,15 @@ func generate() -> void:
 
 func get_world_position(map_positoin: Vector2) -> Vector2:
 	return tiles.map_to_world(map_positoin) + _half_cell_size
+	
+func get_map_position(world_position: Vector2) -> Vector2:
+	return tiles.world_to_map(world_position)
+	
+func get_world_positoin_base_on_event(event: InputEventScreenDrag) -> Vector2:
+	return get_world_position(get_map_position(tiles.make_input_local(event).position))
+	
+func get_cell_corners_world_positoin(center: Vector2) -> Dictionary:
+	return {
+		"top_left": center - _half_cell_size,
+		"bottom_right": center + _half_cell_size
+	}
