@@ -97,8 +97,10 @@ func has_passage(from: Vector2, to: Vector2) -> bool:
 	var map_diff_abs = Vector2(abs(map_from.x - map_to.x), abs(map_from.y - map_to.y))
 	var direction = DirectionEnum.get_diraction_base_on_positions(map_from, map_to)
 
-	var from_value = LabyrinthTileMapHelper.get_cell_value(tiles, get_map_position(from))
+	var from_value = LabyrinthTileMapHelper.get_cell_value(tiles, map_from)
+	var to_value = LabyrinthTileMapHelper.get_cell_value(tiles, map_to)
+
 	var can_move_horizontal = map_diff_abs.x <= 1 and map_diff_abs.y == 0
 	var can_move_vertical = map_diff_abs.x == 0 and map_diff_abs.y <= 1
 
-	return !(from_value & direction) and (can_move_horizontal or can_move_vertical)
+	return to_value != -1 and !(from_value & direction) and (can_move_horizontal or can_move_vertical)
