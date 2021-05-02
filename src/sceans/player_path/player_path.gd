@@ -21,7 +21,7 @@ func _unhandled_input(event):
 	
 	if event is InputEventScreenDrag and _can_move:
 		var cell_center = _labyrinth.get_world_positoin_base_on_event(event)
-		if !_path.has(cell_center):
+		if _path.size() == 0 or (!_path.has(cell_center) and _labyrinth.has_passage(_path[-1], cell_center)):
 			_path.append(cell_center)
 	points = PoolVector2Array(_path)
 	

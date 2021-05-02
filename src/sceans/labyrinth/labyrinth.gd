@@ -90,3 +90,13 @@ func get_cell_corners_world_positoin(center: Vector2) -> Dictionary:
 		"top_left": center - _half_cell_size,
 		"bottom_right": center + _half_cell_size
 	}
+
+func has_passage(from: Vector2, to: Vector2) -> bool:
+	var map_from = get_map_position(from)
+	var map_to = get_map_position(to)
+	var map_diff_abs = Vector2(abs(map_from.x - map_to.x), abs(map_from.y - map_to.y))
+	var direction = DirectionEnum.get_diraction_base_on_positions(map_from, map_to)
+
+	var from_value = LabyrinthTileMapHelper.get_cell_value(tiles, get_map_position(from))
+
+	return !(from_value & direction) and map_diff_abs <= Vector2.ONE
