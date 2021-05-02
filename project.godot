@@ -9,6 +9,11 @@
 config_version=4
 
 _global_script_classes=[ {
+"base": "KinematicBody2D",
+"class": "Character",
+"language": "GDScript",
+"path": "res://src/shared/character.gd"
+}, {
 "base": "Reference",
 "class": "DirectionEnum",
 "language": "GDScript",
@@ -29,7 +34,7 @@ _global_script_classes=[ {
 "language": "GDScript",
 "path": "res://src/sceans/labyrinth/labyrinth_tile_map_helper.gd"
 }, {
-"base": "KinematicBody2D",
+"base": "Character",
 "class": "Player",
 "language": "GDScript",
 "path": "res://src/sceans/player/Player.gd"
@@ -40,6 +45,7 @@ _global_script_classes=[ {
 "path": "res://src/sceans/player_path/player_path.gd"
 } ]
 _global_script_class_icons={
+"Character": "",
 "DirectionEnum": "",
 "Labyrinth": "",
 "LabyrinthBuilder": "",
