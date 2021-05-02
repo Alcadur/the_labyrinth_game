@@ -87,8 +87,8 @@ func get_world_positoin_base_on_event(event: InputEventScreenDrag) -> Vector2:
 	
 func get_cell_corners_world_positoin(center: Vector2) -> Dictionary:
 	return {
-		"top_left": center - _half_cell_size,
-		"bottom_right": center + _half_cell_size
+		Consts.cell_top_left_corner: center - _half_cell_size,
+		Consts.cell_bottom_right_corner: center + _half_cell_size
 	}
 
 func has_passage(from: Vector2, to: Vector2) -> bool:
@@ -98,5 +98,7 @@ func has_passage(from: Vector2, to: Vector2) -> bool:
 	var direction = DirectionEnum.get_diraction_base_on_positions(map_from, map_to)
 
 	var from_value = LabyrinthTileMapHelper.get_cell_value(tiles, get_map_position(from))
+	var can_move_horizontal = map_diff_abs.x <= 1 and map_diff_abs.y == 0
+	var can_move_vertical = map_diff_abs.x == 0 and map_diff_abs.y <= 1
 
-	return !(from_value & direction) and map_diff_abs <= Vector2.ONE
+	return !(from_value & direction) and (can_move_horizontal or can_move_vertical)

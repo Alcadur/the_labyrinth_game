@@ -57,6 +57,7 @@ config/icon="res://icon.png"
 [autoload]
 
 Events="*res://src/shared/Events.gd"
+Consts="*res://src/shared/Consts.gd"
 
 [input_devices]
 
