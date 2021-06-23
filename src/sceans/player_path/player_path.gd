@@ -19,19 +19,21 @@ func setup(labyrinth: Labyrinth, player: Player) -> void:
 	_player = player
 
 func _unhandled_input(event):
-	if event is InputEventScreenTouch and event.pressed: 
-		_can_move = _was_clicked_nearby_to_player(event)
+	if event is InputEventScreenTouch and event.pressed:
+		_stop_in_next_cell()
+		_can_move = _was_clicked_nearby_to_player(event) and _player.is_standing_by
 
 	if event is InputEventScreenTouch and !event.pressed:
 		_can_move = false
-		Events.emit_signal('move_player_by_path', _path)
+		if _player.is_standing_by:
+			Events.emit_signal('move_player_by_path', _path)
 		clear_points()
 		_path.clear()
 
 	if event is InputEventScreenDrag and _can_move:
 		var cell_center = _labyrinth.get_world_positoin_base_on_event(event)
 		_remove_points_to_doubeld_position(cell_center)
-		if _path.size() == 0 or _labyrinth.has_passage(_path[-1], cell_center):
+		if _path.empty() or _labyrinth.has_passage(_path[-1], cell_center):
 			_path.append(cell_center)
 			dot.position = cell_center
 
@@ -54,3 +56,6 @@ func _remove_points_to_doubeld_position(position: Vector2) -> void:
 	if _path.has(position):
 		_path.pop_back()
 		_remove_points_to_doubeld_position(position)
+
+func _stop_in_next_cell() -> void:
+	_player.stop()
