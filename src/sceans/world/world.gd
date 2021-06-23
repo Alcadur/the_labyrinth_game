@@ -10,6 +10,7 @@ onready var player_path := $PlayerPath
 #		player.move_by_path(path)
 
 func _ready() -> void:
+	player_path.position = Vector2.ZERO
 	labyrinth.connect("finished", self, "_on_Labyrinth_finish")
 	labyrinth.generate()
 	player_path.setup(labyrinth, player)

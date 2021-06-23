@@ -18,3 +18,4 @@ position = Vector2( 512, 301 )
 current = true
 
 [node name="PlayerPath" parent="." instance=ExtResource( 2 )]
+position = Vector2( 150, 2000 )
