@@ -35,6 +35,7 @@ func move() -> void:
 	
 	if distance > 2:
 		var colision_obj = move_and_collide(_moving)
+		print(['colide', colision_obj])
 		return
 
 	position = destination

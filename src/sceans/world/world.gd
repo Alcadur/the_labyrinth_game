@@ -40,3 +40,6 @@ func _ready() -> void:
 
 func _on_Labyrinth_finish(cell_position) -> void:
 	player.position = cell_position
+	var rat = Enemy_Scean.Rat.instance()
+	rat.position = labyrinth.get_world_position(Vector2(5,5))
+	labyrinth.add_child(rat)
