@@ -1,7 +1,6 @@
 class_name Character extends KinematicBody2D
 
 export var speed: float = 150
-var _delta_speed: float = 0
 var _dystance: Vector2
 var _destination_point := position
 var _moving: Vector2
@@ -12,30 +11,28 @@ func _ready() -> void:
 	_disable_move()
 
 func _process(delta) -> void:
-	_delta_speed = delta * speed
-	
-	if _is_moving:
-		move()
+	pass
 	
 func _physics_process(delta: float) -> void:
-	pass
+	if _is_moving:
+		move(delta * speed)
 
 func move_by_path(path: PoolVector2Array) -> void:
 	path.remove(0)
 	_path = path
 	_enable_move()
 
-func move() -> void:
+func move(delta_speed) -> void:
 	if !_path or _path.empty():
 		_disable_move()
 		return
 	var destination := _path[0]
 	var distance = position.distance_to(destination)
-	_moving = position.direction_to(destination) * _delta_speed
+	_moving = position.direction_to(destination) * delta_speed
 	
-	if distance > 2:
+	if distance > (speed * .011):
 		var colision_obj = move_and_collide(_moving)
-		print(['colide', colision_obj])
+#		print(['colide', colision_obj])
 		return
 
 	position = destination

@@ -89,82 +89,82 @@ region = Rect2( 512, 704, 64, 64 )
 [sub_resource type="AtlasTexture" id=18]
 flags = 4
 atlas = ExtResource( 1 )
-region = Rect2( 64, 640, 64, 64 )
+region = Rect2( 64, 512, 64, 64 )
 
 [sub_resource type="AtlasTexture" id=19]
 flags = 4
 atlas = ExtResource( 1 )
-region = Rect2( 128, 640, 64, 64 )
+region = Rect2( 128, 512, 64, 64 )
 
 [sub_resource type="AtlasTexture" id=20]
 flags = 4
 atlas = ExtResource( 1 )
-region = Rect2( 192, 640, 64, 64 )
+region = Rect2( 192, 512, 64, 64 )
 
 [sub_resource type="AtlasTexture" id=21]
 flags = 4
 atlas = ExtResource( 1 )
-region = Rect2( 256, 640, 64, 64 )
+region = Rect2( 256, 512, 64, 64 )
 
 [sub_resource type="AtlasTexture" id=22]
 flags = 4
 atlas = ExtResource( 1 )
-region = Rect2( 320, 640, 64, 64 )
+region = Rect2( 320, 512, 64, 64 )
 
 [sub_resource type="AtlasTexture" id=23]
 flags = 4
 atlas = ExtResource( 1 )
-region = Rect2( 384, 640, 64, 64 )
+region = Rect2( 384, 512, 64, 64 )
 
 [sub_resource type="AtlasTexture" id=24]
 flags = 4
 atlas = ExtResource( 1 )
-region = Rect2( 448, 640, 64, 64 )
+region = Rect2( 448, 512, 64, 64 )
 
 [sub_resource type="AtlasTexture" id=25]
 flags = 4
 atlas = ExtResource( 1 )
-region = Rect2( 512, 640, 64, 64 )
+region = Rect2( 512, 512, 64, 64 )
 
 [sub_resource type="AtlasTexture" id=26]
 flags = 4
 atlas = ExtResource( 1 )
-region = Rect2( 64, 512, 64, 64 )
+region = Rect2( 64, 640, 64, 64 )
 
 [sub_resource type="AtlasTexture" id=27]
 flags = 4
 atlas = ExtResource( 1 )
-region = Rect2( 128, 512, 64, 64 )
+region = Rect2( 128, 640, 64, 64 )
 
 [sub_resource type="AtlasTexture" id=28]
 flags = 4
 atlas = ExtResource( 1 )
-region = Rect2( 192, 512, 64, 64 )
+region = Rect2( 192, 640, 64, 64 )
 
 [sub_resource type="AtlasTexture" id=29]
 flags = 4
 atlas = ExtResource( 1 )
-region = Rect2( 256, 512, 64, 64 )
+region = Rect2( 256, 640, 64, 64 )
 
 [sub_resource type="AtlasTexture" id=30]
 flags = 4
 atlas = ExtResource( 1 )
-region = Rect2( 320, 512, 64, 64 )
+region = Rect2( 320, 640, 64, 64 )
 
 [sub_resource type="AtlasTexture" id=31]
 flags = 4
 atlas = ExtResource( 1 )
-region = Rect2( 384, 512, 64, 64 )
+region = Rect2( 384, 640, 64, 64 )
 
 [sub_resource type="AtlasTexture" id=32]
 flags = 4
 atlas = ExtResource( 1 )
-region = Rect2( 448, 512, 64, 64 )
+region = Rect2( 448, 640, 64, 64 )
 
 [sub_resource type="AtlasTexture" id=33]
 flags = 4
 atlas = ExtResource( 1 )
-region = Rect2( 512, 512, 64, 64 )
+region = Rect2( 512, 640, 64, 64 )
 
 [sub_resource type="SpriteFrames" id=34]
 animations = [ {
@@ -180,13 +180,13 @@ animations = [ {
 }, {
 "frames": [ SubResource( 18 ), SubResource( 19 ), SubResource( 20 ), SubResource( 21 ), SubResource( 22 ), SubResource( 23 ), SubResource( 24 ), SubResource( 25 ) ],
 "loop": true,
-"name": "walk S",
-"speed": 5.0
+"name": "walk N",
+"speed": 8.0
 }, {
 "frames": [ SubResource( 26 ), SubResource( 27 ), SubResource( 28 ), SubResource( 29 ), SubResource( 30 ), SubResource( 31 ), SubResource( 32 ), SubResource( 33 ) ],
 "loop": true,
-"name": "walk N",
-"speed": 8.0
+"name": "walk S",
+"speed": 5.0
 } ]
 
 [sub_resource type="Animation" id=35]
@@ -349,6 +349,7 @@ start_node = "Prepare to idle"
 [sub_resource type="AnimationNodeStateMachinePlayback" id=53]
 
 [node name="Player" type="KinematicBody2D"]
+collision_mask = 6
 script = ExtResource( 2 )
 
 [node name="player" type="CollisionShape2D" parent="."]
@@ -361,14 +362,14 @@ scale = Vector2( 0.602702, 0.602702 )
 texture = ExtResource( 1 )
 hframes = 13
 vframes = 21
-frame = 31
+frame = 28
 
 [node name="AnimatedSprite" type="AnimatedSprite" parent="."]
 visible = false
 position = Vector2( 0, -0.707108 )
 frames = SubResource( 34 )
 animation = "walk N"
-frame = 4
+frame = 5
 playing = true
 
 [node name="AnimationPlayer" type="AnimationPlayer" parent="."]

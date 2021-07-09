@@ -5,7 +5,7 @@ class_name Rat extends Enemy
 # Called when the node enters the scene tree for the first time.
 
 func _ready():
-	speed = 200
+	speed = 50
 	pass # Replace with function body.
 
 #func _process(delta):

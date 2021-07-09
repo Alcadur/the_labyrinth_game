@@ -104,3 +104,48 @@ func has_passage(from: Vector2, to: Vector2) -> bool:
 	var can_move_vertical = map_diff_abs.x == 0 and map_diff_abs.y <= 1
 
 	return to_value != -1 and !(from_value & direction) and (can_move_horizontal or can_move_vertical)
+	
+func get_available_cells(from: Vector2, exclude: PoolVector2Array = []) -> PoolVector2Array:
+	var passages := []
+	var map_position := get_map_position(from)
+	var next_position := get_world_position(map_position + Vector2.UP)
+	var directions = [Vector2.UP, Vector2.DOWN, Vector2.LEFT, Vector2.RIGHT]
+	
+	for direction in directions:
+		passages = _add_passage_if_not_excluded(from, map_position, direction, passages, exclude)
+	
+#	if has_passage(from, next_position) :
+#		passages.append(next_position)
+#
+#	next_position = get_world_position(map_position + Vector2.DOWN)
+#	if has_passage(from, next_position):
+#		passages.append(next_position)
+#
+#	next_position = get_world_position(map_position + Vector2.LEFT)
+#	if has_passage(from, next_position):
+#		passages.append(next_position)
+#
+#	next_position = get_world_position(map_position + Vector2.RIGHT)
+#	if has_passage(from, next_position):
+#		passages.append(next_position)
+		
+	return PoolVector2Array(passages)
+
+func _add_passage_if_not_excluded(
+	from: Vector2, 
+	map_position: Vector2, 
+	direction: Vector2, 
+	passages: Array, 
+	excluded: PoolVector2Array
+) -> Array:
+	var next_position := get_world_position(map_position + direction)
+	
+	if has_passage(from, next_position):
+		var is_excluded = false
+		for excluded_positon in excluded:
+			is_excluded = true if excluded_positon == next_position else is_excluded
+		
+		if !is_excluded:
+			passages.append(next_position)
+	
+	return passages
